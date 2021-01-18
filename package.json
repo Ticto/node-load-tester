@@ -1,0 +1,19 @@
+{
+  "name": "load-tester",
+  "version": "0.0.1",
+  "description": "A CPU and Memory load tester",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node .",
+    "dev": "nodemon"
+  },
+  "author": "Jef Braem",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.13.1",
+    "koa-bodyparser": "^4.3.0",
+    "koa-router": "^10.0.0",
+    "nodemon": "^2.0.7"
+  }
+}
