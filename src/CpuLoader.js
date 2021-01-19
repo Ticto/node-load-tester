@@ -1,3 +1,7 @@
+/*
+  This code is based on https://gist.github.com/tkrueger/3500612.
+  And edited for my own use case.
+*/
 import { request } from 'http';
 import os from 'os';
 
