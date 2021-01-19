@@ -1,4 +1,5 @@
 import CpuLoader from "./CpuLoader.js";
+import MemoryLoader from "./MemoryLoader.js";
 
 function cpu(ctx) {
   try {
@@ -19,10 +20,20 @@ function stopCpu(ctx) {
 }
 
 function memory(ctx) {
+  try {
+    const { memory } = ctx.request.body;
+    MemoryLoader.set(memory);
+    ctx.status = 200;
+  } catch(err) {
+    ctx.status = err.status || 500;
+    ctx.body = err.message;
+    ctx.app.emit('error', err, ctx);
+  }
   ctx.status = 200;
 }
 
 function stopMemory(ctx) {
+  MemoryLoader.reset();
   ctx.status = 200;
 }
 
