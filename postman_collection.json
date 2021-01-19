@@ -1,0 +1,110 @@
+{
+	"info": {
+		"_postman_id": "6e8e890e-87fa-4bc9-868f-053692582e1b",
+		"name": "LoadTester",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "cpu",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"loadFactor\": 0.5\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/cpu",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"cpu"
+					]
+				},
+				"description": "Block cpu for a provided amount of milliseconds."
+			},
+			"response": []
+		},
+		{
+			"name": "stop cpu",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/cpu/stop",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"cpu",
+						"stop"
+					]
+				},
+				"description": "Stop cpu block."
+			},
+			"response": []
+		},
+		{
+			"name": "memory",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"memory\": 128\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/memory",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"memory"
+					]
+				},
+				"description": "Load a certain amount of Mb in the app's memory."
+			},
+			"response": []
+		},
+		{
+			"name": "stop memory",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/memory/stop",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"memory",
+						"stop"
+					]
+				},
+				"description": "Stop memory usage."
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
