@@ -3,12 +3,16 @@
   And edited for my own use case.
 */
 
+// Default duration is 1 minute.
+const DEFAULT_DURATION = 60;
+
 // Default size is 256MB.
 const DEFAULT_SIZE_TO_ASSIGN = 256;
 
 // The allocation step is 1MB represented in bytes.
 const CHUNK_SIZE = 1 * 1024 * 1024;
 
+let durationTimeoutId = null;
 let running = false;
 let sizeToAssignInBytes = 0;
 let usedMemory = [];
@@ -45,6 +49,10 @@ function allocateMemoryInChunks() {
 }
 
 function reset() {
+  if (durationTimeoutId) {
+    clearTimeout(durationTimeoutId);
+    durationTimeoutId = null;
+  }
   running = false;
   usedMemory = [];
 
@@ -56,7 +64,7 @@ function reset() {
   }, 5000); // Wait some amount of time for garbage collection.
 }
 
-function set(sizeMB = DEFAULT_SIZE_TO_ASSIGN) {
+function set(sizeMB = DEFAULT_SIZE_TO_ASSIGN, duration = DEFAULT_DURATION) {
   if (running) {
     const memError = new Error('Memory loader is currently running, reset first before applying a new load.');
     memError.status = 400;
@@ -72,11 +80,18 @@ function set(sizeMB = DEFAULT_SIZE_TO_ASSIGN) {
     memError.status = 400;
     throw memError;
   }
+  if (duration <= 0) {
+    duration = DEFAULT_DURATION;
+  }
 
   running = true;
 
   // Start a non-blocking loop.
   setTimeout(allocateMemoryInChunks);
+
+  durationTimeoutId = setTimeout(() => {
+    reset();
+  }, duration * 1000);
 };
 
 export default {

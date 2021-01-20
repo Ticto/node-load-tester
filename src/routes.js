@@ -3,8 +3,8 @@ import MemoryLoader from "./MemoryLoader.js";
 
 function cpu(ctx) {
   try {
-    const { loadFactor } = ctx.request.body;
-    CpuLoader.start(loadFactor);
+    const { cpuUsage, duration } = ctx.request.body;
+    CpuLoader.start(cpuUsage, duration);
     ctx.status = 200;
   } catch(err) {
     ctx.status = err.status || 500;
@@ -21,8 +21,8 @@ function stopCpu(ctx) {
 
 function memory(ctx) {
   try {
-    const { memory } = ctx.request.body;
-    MemoryLoader.set(memory);
+    const { memory, duration } = ctx.request.body;
+    MemoryLoader.set(memory, duration);
     ctx.status = 200;
   } catch(err) {
     ctx.status = err.status || 500;

@@ -5,8 +5,13 @@
 import { request } from 'http';
 import os from 'os';
 
+// Default duration is 1 minute.
+const DEFAULT_DURATION = 60;
+
+// Default load is 50% CPU usage.
 const DEFAULT_LOAD_FACTOR = 0.5;
 
+let durationTimeoutId = null;
 let running = false;
 
 function blockCpu(loadFactor) {
@@ -28,7 +33,16 @@ function blockCpu(loadFactor) {
   }
 }
 
-function start(loadFactor = DEFAULT_LOAD_FACTOR) {
+function stop() {
+  console.log(`Reset CPU usage`);
+  if (durationTimeoutId) {
+    clearTimeout(durationTimeoutId);
+    durationTimeoutId = null;
+  }
+  running = false;
+}
+
+function start(loadFactor = DEFAULT_LOAD_FACTOR, duration = DEFAULT_DURATION) {
   if (running) {
     const cpuError = new Error('CPU loader is already running.');
     cpuError.status = 400;
@@ -38,11 +52,15 @@ function start(loadFactor = DEFAULT_LOAD_FACTOR) {
   if (loadFactor <= 0 || loadFactor >= 1) {
     loadFactor = DEFAULT_LOAD_FACTOR;
   }
+  if (duration <= 0) {
+    duration = DEFAULT_DURATION;
+  }
+  console.log(`Set CPU usage: ${loadFactor * 100}%`);
   blockCpu(loadFactor);
-}
 
-function stop() {
-  running = false;
+  durationTimeoutId = setTimeout(() => {
+    stop();
+  }, duration * 1000);
 }
 
 export default {
