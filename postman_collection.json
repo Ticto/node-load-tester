@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"loadFactor\": 0.5\n}",
+					"raw": "{\n    \"cpuUsage\": 0.25,\n    \"duration\": 60\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -62,7 +62,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"memory\": 128\n}",
+					"raw": "{\n    \"memory\": 128,\n    \"duration\": 60\n}",
 					"options": {
 						"raw": {
 							"language": "json"
