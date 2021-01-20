@@ -6,7 +6,7 @@ import getRoutes from './src/routes.js';
 
 const app = new koa();
 const router = new koaRouter();
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
 
 app.use(bodyParser());
 
