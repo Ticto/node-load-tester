@@ -1,5 +1,6 @@
 import CpuLoader from "./CpuLoader.js";
 import MemoryLoader from "./MemoryLoader.js";
+import MockRequest from "./MockRequest.js";
 
 function cpu(ctx) {
   try {
@@ -37,9 +38,16 @@ function stopMemory(ctx) {
   ctx.status = 200;
 }
 
+async function mockRequest(ctx) {
+  const { delay } = ctx.request.body;
+  await MockRequest.start(delay);
+  ctx.status = 200;
+}
+
 export default function getRoutes(router) {
   router.put('/cpu/stop', stopCpu);
   router.put('/cpu', cpu);
   router.put('/memory/stop', stopMemory);
   router.put('/memory', memory);
+  router.put('/mockRequest', mockRequest);
 }
