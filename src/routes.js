@@ -39,8 +39,8 @@ function stopMemory(ctx) {
 }
 
 async function mockRequest(ctx) {
-  const { delay } = ctx.request.body;
-  await MockRequest.start(delay);
+  const { amount } = ctx.request.body;
+  await MockRequest.start(amount);
   ctx.status = 200;
 }
 

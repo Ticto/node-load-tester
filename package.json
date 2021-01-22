@@ -1,6 +1,6 @@
 {
   "name": "load-tester",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "A CPU and Memory load tester",
   "main": "index.js",
   "type": "module",
@@ -14,6 +14,7 @@
     "koa": "^2.13.1",
     "koa-bodyparser": "^4.3.0",
     "koa-router": "^10.0.0",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "uuid": "^8.3.2"
   }
 }

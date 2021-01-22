@@ -1,4 +1,5 @@
 import crypto from 'crypto';
+import { v4 as uuidv4 } from 'uuid';
 
 function mockOtherServiceOrDb() {
   return new Promise((resolve) => {
@@ -8,17 +9,12 @@ function mockOtherServiceOrDb() {
   })
 }
 
-async function start(delay = 1) {
+async function start(amount = 1) {
   await mockOtherServiceOrDb();
 
-  const now = new Date().getTime();
-  let processing = true;
-  let result = 0;
-  while (processing) {
-    result += Math.random() * Math.random();
-    if (new Date().getTime() > now + delay) {
-      processing = false;
-    }
+  const uuid = uuidv4();
+  for(let i = 0; i < amount; i++) {
+    crypto.createHash('sha256').update(uuid).digest();
   }
 
   return;
