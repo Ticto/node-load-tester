@@ -1,7 +1,10 @@
 {
-  "exec": "yarn start",
+  "exec": "npm start",
   "ext": "js",
-  "watch": ["index.js", "src"],
+  "watch": [
+    "index.js",
+    "src"
+  ],
   "env": {
     "NODE_ENV": "development"
   }
