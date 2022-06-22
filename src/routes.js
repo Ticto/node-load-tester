@@ -45,11 +45,16 @@ async function mockRequest(ctx) {
   ctx.status = 200;
 }
 
+async function healthz(ctz) {
+  ctz.status = 200;
+}
+
 export default function getRoutes(router) {
   router.put('/cpu/stop', stopCpu);
   router.put('/cpu', cpu);
   router.put('/memory/stop', stopMemory);
   router.put('/memory', memory);
   router.put('/mockRequest', mockRequest);
-  router.get('/metrics', metrics)
+  router.get('/metrics', metrics);
+  router.get('/healthz', healthz);
 }
