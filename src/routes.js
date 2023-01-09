@@ -49,6 +49,14 @@ async function healthz(ctz) {
   ctz.status = 200;
 }
 
+async function about(ctx) {
+  ctx.body = JSON.stringify({
+    name: "node-load-tester",
+    deployment_name: process.env.DEPLOYMENT_NAME,
+  })
+  ctx.status = 200;
+}
+
 export default function getRoutes(router) {
   router.put('/cpu/stop', stopCpu);
   router.put('/cpu', cpu);
@@ -57,4 +65,6 @@ export default function getRoutes(router) {
   router.put('/mockRequest', mockRequest);
   router.get('/metrics', metrics);
   router.get('/healthz', healthz);
+
+  router.get('/about', about)
 }
