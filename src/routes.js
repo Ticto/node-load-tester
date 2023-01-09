@@ -45,8 +45,8 @@ async function mockRequest(ctx) {
   ctx.status = 200;
 }
 
-async function healthz(ctz) {
-  ctz.status = 200;
+async function healthz(ctx) {
+  ctx.status = 200;
 }
 
 async function about(ctx) {
