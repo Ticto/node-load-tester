@@ -3,6 +3,8 @@ import MemoryLoader from "./MemoryLoader.js";
 import { metrics } from "./metrics.js";
 import MockRequest from "./MockRequest.js";
 
+import { hostname } from 'os';
+
 function cpu(ctx) {
   try {
     const { cpuUsage, duration } = ctx.request.body;
@@ -53,6 +55,7 @@ async function about(ctx) {
   ctx.body = JSON.stringify({
     name: "node-load-tester",
     deployment_name: process.env.DEPLOYMENT_NAME,
+    hostname: hostname(),
   })
   ctx.status = 200;
 }
